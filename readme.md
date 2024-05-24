@@ -24,3 +24,7 @@ Model 2: posts
     -"/createUser" : create a user in database
     -"/createPost" : create a post in database
     -"/allUserPosts" :shows all post of the current user
+
+
+    **************PASSPORT SESSION ********************
+    1.secret key:heyvarun
