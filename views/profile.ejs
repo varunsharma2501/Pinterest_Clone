@@ -10,46 +10,27 @@
 
   <div class="profile-container">
     <img src="https://i.pinimg.com/474x/cc/5f/93/cc5f93c15abc22fa145107e52cabb0f9.jpg" alt="Profile Picture" class="profile-image">
-    <h1>Varun Sharma</h1>
-    <h3>varuncares22</h3>
-    <p>0 followers</p>
+    <h1><%= user.fullname %></h1>
+    <h3>@<%= user.username %></h3>
+    <p><%= user.followers %> followers</p>
     <button>Share</button>
     <button>Edit Profile</button>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="text" name="filecaption" placeholder="provide caption">
+      <input type="file" name="file">
+      <input type="submit" value="upload">
+    </form>
   </div>
   
   <div class="post-container">
-    <div class="card">
-      <a href="">
-        <img src="https://i.pinimg.com/474x/cc/5f/93/cc5f93c15abc22fa145107e52cabb0f9.jpg" alt="Post Image">
-      </a>
-    </div>
-
-    <div class="card">
-      <a href="">
-        <img src="https://i.pinimg.com/474x/cc/5f/93/cc5f93c15abc22fa145107e52cabb0f9.jpg" alt="Post Image">
-      </a>
-    </div>
-
-    <div class="card">
-      <a href="">
-        <img src="https://i.pinimg.com/474x/cc/5f/93/cc5f93c15abc22fa145107e52cabb0f9.jpg" alt="Post Image">
-      </a>
-    </div>
-    <div class="card">
-      <a href="">
-        <img src="https://i.pinimg.com/474x/cc/5f/93/cc5f93c15abc22fa145107e52cabb0f9.jpg" alt="Post Image">
-      </a>
-    </div>
-    <div class="card">
-      <a href="">
-        <img src="https://i.pinimg.com/474x/cc/5f/93/cc5f93c15abc22fa145107e52cabb0f9.jpg" alt="Post Image">
-      </a>
-    </div>
-    <div class="card">
-      <a href="">
-        <img src="https://i.pinimg.com/474x/cc/5f/93/cc5f93c15abc22fa145107e52cabb0f9.jpg" alt="Post Image">
-      </a>
-    </div>
+    
+    <% user.posts.forEach(function(post){%>
+      <div class="card">
+          <img src="/images/uploads/<%=post.image%>" alt="Post Image">
+          <h5><%= post.post_text %></h5>
+      </div>
+    <%}); %>
+   
   </div>
 
 </body>

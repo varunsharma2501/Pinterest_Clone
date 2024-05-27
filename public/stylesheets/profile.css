@@ -35,24 +35,31 @@ button {
   width: 90%;
   /* max-width: 600px; */
   display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 100px; 
   /* background-color: aqua; */
 }
 
 .card {
-  flex: 1;
-  max-width: 30%;
-  margin: 0 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc; /* Optional: Add a border to the cards */
+  border-radius: 8px; /* Optional: Add rounded corners */
   overflow: hidden;
+  width: 100%; /* Adjust the width as needed */
+  max-width: 300px; /* Adjust the max-width as needed */
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visuals */
 }
 
 .card img {
   width: 100%;
-  max-width: 200px; /* Set max-width as needed */
-  height: auto;
-  display: block;
-  object-fit: cover; /* Ensures image covers the area without distortion */
+  height: auto; /* Ensure the image maintains its aspect ratio */
+}
+
+.card h5 {
+  margin: 0;
+  padding: 8px;
+  text-align: center; /* Center the caption text */
+  background-color: #f8f8f8; /* Optional: Add a background color to the caption */
 }

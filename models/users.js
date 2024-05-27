@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
     type: String,  // Assuming dp is a URL or a path to the display picture
     default: ''
   },
+  followers:{
+    type:Number,
+    default:0
+  },
   posts:[{
     type:mongoose.Schema.Types.ObjectId,
     ref:'Post',
