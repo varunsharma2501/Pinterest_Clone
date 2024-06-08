@@ -1,0 +1,12 @@
+<% include ./partials/header.ejs %>
+<div class="cards flex flex-wrap gap-10 px-10 mt-10">
+    <% user.posts.forEach(function(elem) { %>
+      <div class="card">
+        <div class="w-52 h-40 bg-zinc-200 rounded-lg overflow-hidden">
+          <img src="/images/uploads/<%= elem.image %>" class="w-full h-full object-cover">
+        </div>
+        <h3><%= elem.title %></h3>
+      </div>
+    <% }) %>
+  </div>
+<% include ./partials/footer.ejs %>

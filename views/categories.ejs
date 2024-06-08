@@ -1,0 +1,13 @@
+<% include ./partials/header.ejs %>
+
+<div class="flex flex-wrap justify-center">
+    <% categories.forEach(category => { %>
+        <a href="/post/category/<%= category.name %>" class="m-4 p-4 border rounded-lg shadow-md block">
+            <img src="<%= category.coverImage %>" alt="<%= category.name %>" class="w-32 h-32 object-cover rounded-full mx-auto">
+            <h2 class="text-lg font-semibold text-center mt-2"><%= category.name %></h2>
+            <p class="text-sm text-center mt-1"><%= category.posts.length %> Recipes</p>
+        </a>
+    <% }); %>
+</div>
+
+<% include ./partials/footer.ejs %>

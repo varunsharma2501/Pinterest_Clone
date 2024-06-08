@@ -5,10 +5,13 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const expressSession=require("express-session");
 const userModel=require('./models/users');
+const postModel=require('./models/posts');
 const passport = require('passport');
 const localStrategy=require('passport-local');
 passport.use(new localStrategy(userModel.authenticate()));
-const indexRouter = require('./routes/index');
+const { router: userRouter,isLoggedIn} = require('./routes/user');
+
+const postRouter=require('./routes/post')
 const app = express();
 const flash=require("connect-flash");
 // const initializePassport=require('./passport-config')
@@ -35,8 +38,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/user', userRouter);
+app.use('/post',postRouter);
 
+
+app.get('/',isLoggedIn,async function(req,res,next){
+  const user=await userModel.findOne({username:req.session.passport.user})
+  const posts=await postModel.find() 
+  // populate("user")
+  res.render("feed.ejs",{posts,nav:true});
+})
+
+app.get('/aboutUs',(req,res)=>{
+  res.render('about',{nav:true});
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -52,6 +67,11 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 module.exports = app;

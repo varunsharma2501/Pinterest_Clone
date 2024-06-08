@@ -1,0 +1,17 @@
+<% include ./partials/header.ejs %>
+
+<div class="container mx-auto py-10">
+  <h1 class="text-3xl font-bold text-center mb-10">All Users</h1>
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <% users.forEach(user => { %>
+      <a href="/user/<%= user.username %>" class="block bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <img src="<%= user.dp %>" alt="User Profile Image" class="w-24 h-24 rounded-full mx-auto mb-4">
+        <h2 class="text-xl font-semibold text-center"><%= user.fullname %></h2>
+        <p class="text-center text-gray-700">Rating: <%= user.rating %> / 5</p>
+        <p class="text-center text-gray-700">Reviews: <%= user.reviews %></p>
+      </a>
+    <% }) %>
+  </div>
+</div>
+
+<% include ./partials/footer.ejs %>

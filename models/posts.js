@@ -1,10 +1,21 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://127.0.0.1:27017/pinterestClone");
+mongoose.connect("mongodb://127.0.0.1:27017/Recipe");
 
 const postSchema = new mongoose.Schema({
-  post_text: {
+  title: {
     type: String,
     required: true,
+  },
+  description:{
+    type:String,
+    required:true
+  },
+  category:{
+    type:String,
+    required:true,
+  },
+  ingredients:{
+      type:[String],
   },
   image:{
     type:String,
@@ -17,9 +28,18 @@ const postSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref:'User',
   },
-  likes: {
-    type: Array, // Assuming likes are references to User IDs
-    default: [],
+  reviews: {
+    type:Number,
+    default:0
+  },
+  rating:{
+    type:Number,
+    min:0,
+    max:5,
+    default:0
+  },
+  video:{
+    type:String,
   }
 }, {
   timestamps: true

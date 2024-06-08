@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const plm=require("passport-local-mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/pinterestClone");
+mongoose.connect("mongodb://127.0.0.1:27017/Recipe");
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -9,9 +9,11 @@ const userSchema = new mongoose.Schema({
   },
   fullname: {
     type: String,
+    required:true
   },
   password: {
     type: String,
+    // required:true,
   },
   email: {
     type: String,
@@ -32,8 +34,24 @@ const userSchema = new mongoose.Schema({
   }],
   dob: {
     type: Date, // Use 'Date' instead of 'date' (capitalized)
-  }
-
+  },
+  reviews:{
+    type:Number,
+    default:0
+  },
+  rating:{
+    type:Number,
+    min: 0,
+    max: 5,
+    default:0,
+  },
+  reports:{
+    type:Number,
+    default:0,
+  },
+  country:{
+    type:String,
+  },
 }, {
   timestamps: true
 });
